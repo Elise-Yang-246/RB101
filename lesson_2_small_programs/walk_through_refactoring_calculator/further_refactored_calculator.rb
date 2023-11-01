@@ -29,7 +29,7 @@ loop do
   name = gets.chomp
   
   if name.empty?
-      prompt("Make sure to use a valid name.")
+    prompt("Make sure to use a valid name.")
   else
     break
   end
@@ -94,7 +94,7 @@ loop do # main loop
               number1.to_i * number2.to_i
             when '4'
               number1.to_f / number2.to_f
-  end
+            end
   
   prompt("The result is #{result}")
   
