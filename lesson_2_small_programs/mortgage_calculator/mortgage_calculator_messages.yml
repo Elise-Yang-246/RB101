@@ -1,0 +1,7 @@
+greeting: "Welcome to Mortgage Calculator! Please enter your name:"
+invalid_name: "Make sure to use a valid name."
+greeting_before_name: "Hi "
+loan_amount: "What is the loan amount? (Only numbers and no commas/letters, please)"
+invalid_number: "Hmmm...please enter a valid number."
+apr: "What is the Annual Percentage Rate (APR)?"
+loan_duration: "What is the loan duration (in years)?"
