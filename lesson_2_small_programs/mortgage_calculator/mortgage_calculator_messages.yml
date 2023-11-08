@@ -5,3 +5,6 @@ loan_amount: "What is the loan amount? (Only numbers and no commas/letters, plea
 invalid_number: "Hmmm...please enter a valid number."
 apr: "What is the Annual Percentage Rate (APR)?"
 loan_duration: "What is the loan duration (in years)?"
+again: "Would you like to calculate again? (Y for yes, N for no)"
+invalid_again: "Please enter 'Y' or 'N'"
+goodbye: "Thanks for using Mortgage Calculator. Goodbye! :)"

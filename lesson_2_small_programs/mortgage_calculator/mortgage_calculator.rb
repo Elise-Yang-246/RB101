@@ -24,51 +24,70 @@ loop do
 end
 prompt(MESSAGES['greeting_before_name'] + "#{name}!")
 
-# Ask user to input info and validate the inputs:
-prompt(MESSAGES['loan_amount'])
-loan_amount = nil
+# Start of main loop
 loop do
-  loan_amount = gets.chomp
-  if valid_number?(loan_amount)
-    loan_amount = loan_amount.to_f
-    break
-  else
-    prompt(MESSAGES['invalid_number'])
+  # Ask user to input info and validate the inputs:
+  prompt(MESSAGES['loan_amount'])
+  loan_amount = nil
+  loop do
+    loan_amount = gets.chomp
+    if valid_number?(loan_amount)
+      loan_amount = loan_amount.to_f
+      break
+    else
+      prompt(MESSAGES['invalid_number'])
+    end
   end
-end
-
-prompt(MESSAGES['apr'])
-apr = nil
-loop do
-  apr = gets.chomp
-  if valid_number?(apr)
-    apr = apr.to_f
-    break
-  else
-    prompt(MESSAGES['invalid_number'])
+  
+  prompt(MESSAGES['apr'])
+  apr = nil
+  loop do
+    apr = gets.chomp
+    if valid_number?(apr)
+      apr = apr.to_f
+      break
+    else
+      prompt(MESSAGES['invalid_number'])
+    end
   end
-end
-
-prompt(MESSAGES['loan_duration'])
-loan_duration_in_years = nil
-loop do
-  loan_duration_in_years = gets.chomp
-  if valid_number?(loan_duration_in_years)
-    loan_duration_in_years = loan_duration_in_years.to_f
-    break
-  else
-    prompt(MESSAGES['invalid_number'])
+  
+  prompt(MESSAGES['loan_duration'])
+  loan_duration_in_years = nil
+  loop do
+    loan_duration_in_years = gets.chomp
+    if valid_number?(loan_duration_in_years)
+      loan_duration_in_years = loan_duration_in_years.to_f
+      break
+    else
+      prompt(MESSAGES['invalid_number'])
+    end
   end
+  
+  # Convert user input to months:
+  monthly_interest_rate = (apr / 12) / 100
+  loan_duration_in_months = loan_duration_in_years * 12
+  
+  # Calculate monthly payment:
+  monthly_payment = loan_amount * (monthly_interest_rate / (1 - ((1 + monthly_interest_rate)**(-loan_duration_in_months))))
+  
+  # Output results:
+  prompt("The monthly interest rate is #{(monthly_interest_rate * 100).round(2)}%")
+  prompt("The loan duration is #{loan_duration_in_months} months")
+  prompt("The monthly payment is $#{monthly_payment.round(2)}")
+
+  # Ask if user would like to calculate again
+  prompt(MESSAGES['again'])
+  again_or_not = nil
+  loop do
+    again_or_not = gets.chomp.downcase
+    if again_or_not == 'n'
+      prompt(MESSAGES['goodbye'])
+      break
+    elsif again_or_not == 'y'
+      break
+    else
+      prompt(MESSAGES['invalid_again'])
+    end
+  end
+  break if again_or_not == 'n'
 end
-
-# Convert user input to months:
-monthly_interest_rate = (apr / 12) / 100
-loan_duration_in_months = loan_duration_in_years * 12
-
-# Calculate monthly payment:
-monthly_payment = loan_amount * (monthly_interest_rate / (1 - ((1 + monthly_interest_rate)**(-loan_duration_in_months))))
-
-# Output results:
-prompt("The monthly interest rate is #{(monthly_interest_rate * 100).round(2)}%")
-prompt("The loan duration is #{loan_duration_in_months} months")
-prompt("The monthly payment is $#{monthly_payment.round(2)}")
