@@ -42,7 +42,7 @@ puts "----------------------"
 
 e = b.pop
 
-puts "After d = b.pop"
+puts "After e = b.pop"
 puts "a: #{a}"
 puts "b: #{b}"
 puts "c: #{c}"
